@@ -49,17 +49,20 @@ public :
             i++;
         }
         cout << endl;
-       
-   
     }
 
+   int Length()
+   {
+       return strlen(array);
+   }
 
-
-    friend void operator << (ostream& output,  String& s)
+   /////////////////////////    <<
+    friend void operator << (ostream& output,  String& s) // console output
     {
         output << s.array<<endl;
     }
 
+    ///////////////////////   -
       void operator - (int i)
     {
         for (int k = i;k < strlen(array);k++)
@@ -69,7 +72,8 @@ public :
         *(array + strlen(array) ) = '\0';
     }
 
-      bool operator > (char *p)
+      //////////////////////////// >
+      bool operator > (char *p) //general array
       {
           int counter = 0;
              
@@ -100,7 +104,7 @@ public :
       }
 
 
-      bool operator > (String p)
+      bool operator > (String p) //class String
       {
           int counter = 0;
 
@@ -137,7 +141,9 @@ public :
       }
 
 
-      bool operator != (char *s)
+      ///////////////////////// !=
+
+      bool operator != (char *s) // general array
       {
           if (this->Length() != strlen(s))
           {
@@ -169,7 +175,7 @@ public :
 
 
 
-      bool operator != (String s)
+      bool operator != (String s) // class String
       {
           if (this->Length() != s.Length())
           {
@@ -199,7 +205,8 @@ public :
           return false;
       }
 
-      void operator+( char& p )
+     ////////////////////////// +
+      void operator+( char& p ) // one symbol
       {
           int i;
           cout << "куда вставляем?" << endl;
@@ -213,15 +220,19 @@ public :
           this->array[i] = p;
       }
 
-      int Length()
-      {
-          return strlen(array);
-      }
+
    
-      void operator+(char s)
+      void operator+(char *string) // general array
       {
-       strcat(array , &s);
+          strcat(array, string);
       }
+
+      void operator + (String stringObj) //object of class String
+      {
+          strcat(array, stringObj.array);
+      }
+
+      ////////////////////////// []
 
       char operator[](int i)
       {
